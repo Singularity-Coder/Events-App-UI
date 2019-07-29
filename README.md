@@ -1,2 +1,2 @@
-# r1
-Reuse
+# The Events App
+Its a fully featured Events App
