@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_event_filter_dialog_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_close_black_24dp"
+        android:tint="@color/colorSkyBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp"
+        android:text="Filter Events"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="RESET"
+        android:textAllCaps="true"
+        android:textColor="@color/colorSkyBlue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_event_filter_dialog_close" />
+
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_divider"
+        android:layout_width="0dp"
+        android:layout_height="0.2dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorGrey"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tv_event_filter_dialog_reset"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/img_event_filter_dialog_close" />
+
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_proximity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Proximity"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/tv_event_filter_dialog_divider" />
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_seekbar_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100 m"
+        android:textColor="@color/colorSkyBlue"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_event_filter_dialog_proximity"
+        app:layout_constraintEnd_toEndOf="@+id/tv_event_filter_dialog_reset"
+        app:layout_constraintTop_toTopOf="@+id/tv_event_filter_dialog_proximity" />
+
+    <SeekBar
+        android:id="@+id/seekbar_event_filter_dialog_proximity"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:max="4"
+        android:progress="5"
+        app:layout_constraintEnd_toEndOf="@+id/tv_event_filter_dialog_reset"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/tv_event_filter_dialog_proximity" />
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Date"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_event_filter_dialog_proximity" />
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_date_setter"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_edit_text"
+        android:gravity="center_vertical"
+        android:hint="Set Date"
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_event_filter_dialog_reset"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/tv_event_filter_dialog_date" />
+
+    <TextView
+        android:id="@+id/tv_event_filter_dialog_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Cost"
+        android:textColor="@color/colorBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/tv_event_filter_dialog_date_setter" />
+
+    <RadioGroup
+        android:id="@+id/radiogroup_event_filter_dialog_cost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:outlineAmbientShadowColor="@color/colorSkyBlue"
+        android:outlineSpotShadowColor="@color/colorSkyBlue"
+        android:weightSum="1"
+        app:layout_constraintEnd_toEndOf="@+id/tv_event_filter_dialog_reset"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/tv_event_filter_dialog_cost">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Low to High"
+            android:textColor="@color/colorSkyBlue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="High to Low"
+            android:textColor="@color/colorSkyBlue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/colorSkyBlue"
+        android:text="APPLY"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_event_filter_dialog_reset"
+        app:layout_constraintStart_toStartOf="@+id/img_event_filter_dialog_close"
+        app:layout_constraintTop_toBottomOf="@+id/radiogroup_event_filter_dialog_cost" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

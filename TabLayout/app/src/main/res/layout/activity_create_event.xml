@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_grey_bg"
+    android:nestedScrollingEnabled="true"
+    tools:context=".view.CreateEventActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_create_event"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarTheme" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:nestedScrollingEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_create_event">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            android:scrollbars="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/con_lay_create_event_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/img_create_event_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:src="@color/colorSkyBlue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/imgbtn_create_event_upload_pic"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="65dp"
+                    android:background="@drawable/ic_photo_camera_black_24dp"
+                    android:contentDescription="Upload Event Image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_create_event_upload_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Event Pic"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgbtn_create_event_upload_pic" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_create_event_more_pics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Add 6 more pictures"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/con_lay_create_event_banner" />
+
+            <ImageView
+                android:id="@+id/img_create_event_add_extra_image"
+                android:layout_width="130dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_add_black_24dp"
+                android:tint="@color/colorWhite"
+                android:padding="20dp"
+                android:background="@color/colorSkyBlue"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_more_pics" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_create_event_add_more_pics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:nestedScrollingEnabled="true"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toEndOf="@+id/img_create_event_add_extra_image"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_more_pics" />
+
+            <TextView
+                android:id="@+id/tv_create_event_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/img_create_event_add_extra_image" />
+
+            <EditText
+                android:id="@+id/et_create_event_name"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:drawablePadding="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_name" />
+
+            <TextView
+                android:id="@+id/tv_create_event_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Type"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/et_create_event_name" />
+
+
+            <TextView
+                android:id="@+id/tv_create_event_type_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_type" />
+
+            <TextView
+                android:id="@+id/tv_create_event_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Location"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_type_dialog" />
+
+            <EditText
+                android:id="@+id/et_create_event_location"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:drawablePadding="10dp"
+                android:maxLines="1"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_location" />
+
+            <TextView
+                android:id="@+id/tv_create_event_venue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Venue"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/et_create_event_location" />
+
+            <EditText
+                android:id="@+id/et_create_event_venue"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:drawablePadding="10dp"
+                android:maxLines="1"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_venue" />
+
+            <TextView
+                android:id="@+id/tv_create_event_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Description"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/et_create_event_venue" />
+
+            <EditText
+                android:id="@+id/et_create_event_description"
+                style="@style/StyleEditText"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="15dp"
+                android:gravity="top"
+                android:maxLines="20"
+                android:nestedScrollingEnabled="true"
+                android:padding="10dp"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_description" />
+
+            <TextView
+                android:id="@+id/tv_create_event_category"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Category"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/et_create_event_description" />
+
+            <TextView
+                android:id="@+id/tv_create_event_category_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_category" />
+
+
+            <TextView
+                android:id="@+id/tv_create_event_frequency"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Event Frequency"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_category_dialog" />
+
+            <TextView
+                android:id="@+id/tv_create_event_frequency_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_frequency" />
+
+            <TextView
+                android:id="@+id/tv_create_event_start_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Start Date"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/tv_create_event_start_time"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_frequency_dialog" />
+
+            <TextView
+                android:id="@+id/tv_create_event_start_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Start Time"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_create_event_start_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_frequency_dialog" />
+
+            <TextView
+                android:id="@+id/tv_create_event_start_date_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_create_event_start_time_dialog"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_start_date" />
+
+            <TextView
+                android:id="@+id/tv_create_event_start_time_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_create_event_start_date_dialog"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_start_time" />
+
+
+            <TextView
+                android:id="@+id/tv_create_event_end_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="End Date"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/tv_create_event_end_time"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_start_date_dialog" />
+
+            <TextView
+                android:id="@+id/tv_create_event_end_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="End Time"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_create_event_end_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_start_date_dialog" />
+
+            <TextView
+                android:id="@+id/tv_create_event_end_date_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_create_event_end_time_dialog"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_end_date" />
+
+            <TextView
+                android:id="@+id/tv_create_event_end_time_dialog"
+                style="@style/StyleEditText"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toEndOf="@+id/tv_create_event_end_date_dialog"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_end_time" />
+
+            <TextView
+                android:id="@+id/tv_create_event_invited_people"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:text="0 people invited"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_end_date_dialog" />
+
+            <Button
+                android:id="@+id/btn_create_event_invite_people"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="40dp"
+                android:backgroundTint="@color/colorAccent"
+                android:text="+ Invite People"
+                android:textColor="@color/colorLightBlue"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/et_create_event_name"
+                app:layout_constraintStart_toStartOf="@+id/et_create_event_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_create_event_invited_people" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
