@@ -1,11 +1,13 @@
 package com.singularitycoder.tablayout.view;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -13,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +33,7 @@ public class EventFullViewActivity extends AppCompatActivity {
     EventFullViewGalleryAdapter galleryAdapter;
     ArrayList<EventFullViewModel> galleryList;
     Button btnEventViewInterested, btnEventViewGoing, btnEventViewShare;
+    ImageView imgMoreEventOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,14 @@ public class EventFullViewActivity extends AppCompatActivity {
         fillGalleryList();
         setGalleryAdapter();
         setGalleryRecyclerView();
+
+        imgMoreEventOptions = findViewById(R.id.img_view_event_more);
+        imgMoreEventOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMoreEventOptions();
+            }
+        });
 
 
         tvEventVenue = findViewById(R.id.tv_event_placeholder_venue);
@@ -101,23 +113,26 @@ public class EventFullViewActivity extends AppCompatActivity {
                     buttonDrawable = DrawableCompat.wrap(buttonDrawable);
                     DrawableCompat.setTint(buttonDrawable, getResources().getColor(R.color.colorGreen));
                     btnEventViewGoing.setBackground(buttonDrawable);
+                    btnEventViewGoing.setEnabled(false);
 
 //                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //                        btnEventViewInterested.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorGreen)));
 //                    }
-                } else {
-                    btnEventViewGoing.setText("I ' m Going");
-                    btnEventViewGoing.setTextSize(15);
-//
-                    Drawable buttonDrawable = btnEventViewGoing.getBackground();
-                    buttonDrawable = DrawableCompat.wrap(buttonDrawable);
-                    DrawableCompat.setTint(buttonDrawable, getResources().getColor(R.color.colorSkyBlue));
-                    btnEventViewGoing.setBackground(buttonDrawable);
-
-//                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                        btnEventViewInterested.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSkyBlue)));
-//                    }
                 }
+
+//                else {
+//                    btnEventViewGoing.setText("I ' m Going");
+//                    btnEventViewGoing.setTextSize(15);
+////
+//                    Drawable buttonDrawable = btnEventViewGoing.getBackground();
+//                    buttonDrawable = DrawableCompat.wrap(buttonDrawable);
+//                    DrawableCompat.setTint(buttonDrawable, getResources().getColor(R.color.colorSkyBlue));
+//                    btnEventViewGoing.setBackground(buttonDrawable);
+//
+////                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+////                        btnEventViewInterested.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorSkyBlue)));
+////                    }
+//                }
             }
         });
         btnEventViewShare.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +173,32 @@ public class EventFullViewActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    private void showMoreEventOptions() {
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("More Event Options");
+
+        // add a homeList
+        String[] selectArray = {"Hide this event type", "Report Abuse"};
+        builder.setItems(selectArray, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+
+                        break;
+                    case 1:
+
+                        break;
+                }
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void fillGalleryList() {

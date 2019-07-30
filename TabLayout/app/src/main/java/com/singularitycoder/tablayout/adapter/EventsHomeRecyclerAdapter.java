@@ -1,6 +1,7 @@
 package com.singularitycoder.tablayout.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.StrictMode;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,14 +24,14 @@ import com.singularitycoder.tablayout.model.EventItemModel;
 
 import java.util.ArrayList;
 
-public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAdapter.EventViewHolder> implements Filterable {
+public class EventsHomeRecyclerAdapter extends RecyclerView.Adapter<EventsHomeRecyclerAdapter.EventViewHolder> implements Filterable {
 
     ArrayList<EventItemModel> eventsList;
     ArrayList<EventItemModel> eventsSearchList;
     Context context;
     OnItemClickListener clickListener;
 
-    public EventsRecyclerAdapter(ArrayList<EventItemModel> eventsList, Context context) {
+    public EventsHomeRecyclerAdapter(ArrayList<EventItemModel> eventsList, Context context) {
         this.eventsList = eventsList;
         eventsSearchList = new ArrayList<>(eventsList);
         this.context = context;
@@ -37,7 +39,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerlist_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_home_events, viewGroup, false);
         return new EventViewHolder(view);
     }
 
@@ -109,7 +111,12 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
 
                 share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
                 context.startActivity(Intent.createChooser(share, "Share to"));
-
+            }
+        });
+        eventViewHolder.imgMoreEventOptions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMoreEventOptions();
             }
         });
     }
@@ -118,6 +125,32 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
     public int getItemCount() {
 //            return eventsList == null ? 0 : eventsList.size();
         return eventsList.size();
+    }
+
+    private void showMoreEventOptions() {
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setTitle("More Event Options");
+
+        // add a list
+        String[] selectArray = {"Hide this event type", "Report Abuse"};
+        builder.setItems(selectArray, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+
+                        break;
+                    case 1:
+
+                        break;
+                }
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private Filter eventsSearchFilter = new Filter() {
@@ -166,6 +199,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
         TextView tvEventPrice;
         Button btnEventInterested;
         Button btnEventShare;
+        ImageView imgMoreEventOptions;
 
 
         public EventViewHolder(View itemView) {
@@ -179,6 +213,7 @@ public class EventsRecyclerAdapter extends RecyclerView.Adapter<EventsRecyclerAd
             tvEventPrice = itemView.findViewById(R.id.tv_event_price);
             btnEventInterested = itemView.findViewById(R.id.btn_event_interested);
             btnEventShare = itemView.findViewById(R.id.btn_event_share);
+            imgMoreEventOptions = itemView.findViewById(R.id.img_event_more);
 
             itemView.setOnClickListener(this);
 

@@ -6,7 +6,7 @@
     android:background="@color/bg_light">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_events"
+        android:id="@+id/recycler_view_events_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"

@@ -447,8 +447,8 @@ public class CreateEventActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Set Image");
 
-        // add a list
-        String[] selectArray = {"Take a Picture", "Choose from Gallery"};
+        // add a homeList
+        String[] selectArray = {"Capture photo from camera", "Select photo from gallery"};
         builder.setItems(selectArray, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

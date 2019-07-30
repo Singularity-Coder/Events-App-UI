@@ -17,6 +17,14 @@ public class EventItemModel {
         this.strEventPrice = strEventPrice;
     }
 
+    public EventItemModel(int intEventImage, String strEventDate, String strEventTitle, String strEventCategory, String strEventVenue) {
+        this.intEventImage = intEventImage;
+        this.strEventDate = strEventDate;
+        this.strEventTitle = strEventTitle;
+        this.strEventCategory = strEventCategory;
+        this.strEventVenue = strEventVenue;
+    }
+
     public int getIntEventImage() {
         return intEventImage;
     }

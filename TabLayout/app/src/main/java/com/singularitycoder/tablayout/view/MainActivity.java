@@ -33,7 +33,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.singularitycoder.tablayout.R;
-import com.singularitycoder.tablayout.adapter.EventsRecyclerAdapter;
+import com.singularitycoder.tablayout.adapter.EventsGoingRecyclerAdapter;
+import com.singularitycoder.tablayout.adapter.EventsHomeRecyclerAdapter;
+import com.singularitycoder.tablayout.adapter.EventsInterestedRecyclerAdapter;
 import com.singularitycoder.tablayout.model.EventItemModel;
 
 import java.util.ArrayList;
@@ -44,8 +46,12 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ViewPager viewPager;
     TabLayout tabLayout;
-    static EventsRecyclerAdapter adapter;
-    static ArrayList<EventItemModel> list;
+    static EventsHomeRecyclerAdapter homeAdapter;
+    static EventsInterestedRecyclerAdapter interestedAdapter;
+    static EventsGoingRecyclerAdapter goingAdapter;
+    static ArrayList<EventItemModel> homeList;
+    static ArrayList<EventItemModel> interestedList;
+    static ArrayList<EventItemModel> goingList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,13 +112,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new EventsFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "ALL");
-        adapter.addFrag(new EventsFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "INTERESTED");
-        adapter.addFrag(new EventsFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "I'M GOING");
+        adapter.addFrag(new EventsHomeFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "ALL");
+        adapter.addFrag(new EventsInterestedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "INTERESTED");
+        adapter.addFrag(new EventsGoingFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "I'M GOING");
         viewPager.setAdapter(adapter);
     }
 
-    public void showEventFiltersDialog(Activity activity){
+    public void showEventFiltersDialog(Activity activity) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         Rect displayRectangle = new Rect();
         Window window = this.getWindow();
         window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
-        dialog.getWindow().setLayout((int)(displayRectangle.width() * 0.8f), dialog.getWindow().getAttributes().height);
+        dialog.getWindow().setLayout((int) (displayRectangle.width() * 0.8f), dialog.getWindow().getAttributes().height);
 
         ImageView imgCloseDialog = dialog.findViewById(R.id.img_event_filter_dialog_close);
         imgCloseDialog.setOnClickListener(new View.OnClickListener() {
@@ -195,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
+                homeAdapter.getFilter().filter(newText);
                 return false;
             }
         });
@@ -247,25 +253,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static class EventsFragment extends Fragment {
+    public static class EventsHomeFragment extends Fragment {
         int color;
 
-        public EventsFragment() {
+        public EventsHomeFragment() {
         }
 
         @SuppressLint("ValidFragment")
-        public EventsFragment(int color) {
+        public EventsHomeFragment(int color) {
             this.color = color;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.events_fragment, container, false);
+            View view = inflater.inflate(R.layout.fragment_event_home, container, false);
 
             final FrameLayout frameLayout = view.findViewById(R.id.events_fragment);
             frameLayout.setBackgroundColor(color);
 
-            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events);
+            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_home);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
             recyclerView.setLayoutManager(linearLayoutManager);
@@ -275,25 +281,25 @@ public class MainActivity extends AppCompatActivity {
             recyclerView.setDrawingCacheEnabled(true);
             recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
-            list = new ArrayList<>();
+            homeList = new ArrayList<>();
 //            for (int i = 0; i < EventItemModel.data.length; i++) {
-//                list.add(EventItemModel.data[i]);
+//                homeList.add(EventItemModel.data[i]);
 //            }
 
-            list.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Sri Krishna Janmashtami", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Vijaya Ekadasi", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Nityananda Trayodasi", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Bhismastami", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Mohini Ekadasi", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Pandava Nirjala Ekadasi", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Guru Purnima", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Nandotsava", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Lalita Sasti", "Festival", "ISKCON Temple", "$100000"));
-            list.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Durga Puja", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Sri Krishna Janmashtami", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Vijaya Ekadasi", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Nityananda Trayodasi", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Bhismastami", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Mohini Ekadasi", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Pandava Nirjala Ekadasi", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Guru Purnima", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Nandotsava", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Lalita Sasti", "Festival", "ISKCON Temple", "$100000"));
+            homeList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Durga Puja", "Festival", "ISKCON Temple", "$100000"));
 
-            adapter = new EventsRecyclerAdapter(list, getContext());
-            adapter.setHasStableIds(true);
-            adapter.setOnItemClickListener(new EventsRecyclerAdapter.OnItemClickListener() {
+            homeAdapter = new EventsHomeRecyclerAdapter(homeList, getContext());
+            homeAdapter.setHasStableIds(true);
+            homeAdapter.setOnItemClickListener(new EventsHomeRecyclerAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position) {
                     Toast.makeText(getContext(), position + " got clicked", Toast.LENGTH_LONG).show();
@@ -301,7 +307,129 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(homeAdapter);
+
+            return view;
+        }
+    }
+
+    public static class EventsInterestedFragment extends Fragment {
+        int color;
+
+        public EventsInterestedFragment() {
+        }
+
+        @SuppressLint("ValidFragment")
+        public EventsInterestedFragment(int color) {
+            this.color = color;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_event_interested, container, false);
+
+            final FrameLayout frameLayout = view.findViewById(R.id.events_fragment);
+            frameLayout.setBackgroundColor(color);
+
+            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_interested);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
+            recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+            interestedList = new ArrayList<>();
+//            for (int i = 0; i < EventItemModel.data.length; i++) {
+//                homeList.add(EventItemModel.data[i]);
+//            }
+
+            interestedList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Sri Krishna Janmashtami", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Vijaya Ekadasi", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Nityananda Trayodasi", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Bhismastami", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Mohini Ekadasi", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Pandava Nirjala Ekadasi", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Guru Purnima", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Nandotsava", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Lalita Sasti", "Festival", "ISKCON Temple", "$100000"));
+            interestedList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Durga Puja", "Festival", "ISKCON Temple", "$100000"));
+
+            interestedAdapter = new EventsInterestedRecyclerAdapter(interestedList, getContext());
+            interestedAdapter.setHasStableIds(true);
+            interestedAdapter.setOnItemClickListener(new EventsInterestedRecyclerAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Toast.makeText(getContext(), position + " got clicked", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), EventFullViewActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            recyclerView.setAdapter(interestedAdapter);
+
+            return view;
+        }
+    }
+
+    public static class EventsGoingFragment extends Fragment {
+        int color;
+
+        public EventsGoingFragment() {
+        }
+
+        @SuppressLint("ValidFragment")
+        public EventsGoingFragment(int color) {
+            this.color = color;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_event_interested, container, false);
+
+            final FrameLayout frameLayout = view.findViewById(R.id.events_fragment);
+            frameLayout.setBackgroundColor(color);
+
+            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_interested);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
+            recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+            goingList = new ArrayList<>();
+//            for (int i = 0; i < EventItemModel.data.length; i++) {
+//                homeList.add(EventItemModel.data[i]);
+//            }
+
+            goingList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Sri Krishna Janmashtami", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Vijaya Ekadasi", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Nityananda Trayodasi", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Bhismastami", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Mohini Ekadasi", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Pandava Nirjala Ekadasi", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Guru Purnima", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Nandotsava", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Lalita Sasti", "Festival", "ISKCON Temple"));
+            goingList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Durga Puja", "Festival", "ISKCON Temple"));
+
+            goingAdapter = new EventsGoingRecyclerAdapter(goingList, getContext());
+            goingAdapter.setHasStableIds(true);
+            goingAdapter.setOnItemClickListener(new EventsGoingRecyclerAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Toast.makeText(getContext(), position + " got clicked", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), EventFullViewActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            recyclerView.setAdapter(goingAdapter);
 
             return view;
         }

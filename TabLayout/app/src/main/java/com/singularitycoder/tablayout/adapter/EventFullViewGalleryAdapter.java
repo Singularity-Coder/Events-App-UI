@@ -29,7 +29,7 @@ public class EventFullViewGalleryAdapter extends RecyclerView.Adapter<EventFullV
 
     @Override
     public EventFullViewGalleryViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.event_gallery_recycler_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_event_gallery, viewGroup, false);
         return new EventFullViewGalleryViewHolder(view);
     }
 

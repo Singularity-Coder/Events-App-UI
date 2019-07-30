@@ -14,9 +14,20 @@
     <ImageView
         android:id="@+id/img_event_image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="350dp"
         android:scaleType="centerCrop"
         android:src="@drawable/header"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_event_image_fade"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:alpha="0.5"
+        android:background="@drawable/fade_dark"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,29 +38,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="190dp"
         android:text="SUN, AUG 23 - AUG 25"
-        android:textColor="@color/colorMonth"
+        android:textColor="@color/colorWhite"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/img_event_more"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_event_image" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/img_event_more"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_more_horiz_black_24dp"
         android:tint="@color/colorSkyBlue"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_event_going_more"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_event_date"
-        app:layout_constraintTop_toBottomOf="@+id/img_event_image" />
-
+        app:layout_constraintStart_toEndOf="@+id/tv_event_going_more"
+        app:layout_constraintTop_toTopOf="@+id/tv_event_going_more" />
 
     <TextView
         android:id="@+id/tv_event_title"
@@ -62,7 +71,7 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:padding="0dp"
         android:text="Sri Krishna Janmashtami"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorWhite"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Festival"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="@+id/tv_event_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_title" />
 
@@ -84,6 +94,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:text="\@"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toEndOf="@+id/tv_event_category"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_title" />
 
@@ -94,6 +105,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:text="ISKCON Temple"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toEndOf="@+id/tv_event_placeholder1"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_title" />
 
@@ -103,23 +115,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="$10000"
-        android:textColor="@color/colorGreen"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
         app:layout_constraintStart_toStartOf="@+id/tv_event_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_category" />
 
+
     <Button
-        android:id="@+id/btn_event_interested"
+        android:id="@+id/btn_event_going"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Interested"
-        android:textColor="@color/colorLightBlue"
+        android:backgroundTint="@color/colorWhite"
+        android:text="Going"
+        android:textColor="@color/colorSkyBlue"
         android:textSize="15sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_event_share"
         app:layout_constraintStart_toStartOf="parent"
@@ -131,12 +142,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/colorAccent"
+        android:backgroundTint="@color/colorWhite"
         android:text="SHARE"
-        android:textColor="@color/colorLightBlue"
+        android:textColor="@color/colorSkyBlue"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/tv_event_title"
-        app:layout_constraintStart_toEndOf="@+id/btn_event_interested"
+        app:layout_constraintStart_toEndOf="@+id/btn_event_going"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_price" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
@@ -156,7 +167,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/img_event_going_face2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_event_interested" />
+        app:layout_constraintTop_toBottomOf="@+id/img_event_image" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/img_event_going_face2"
@@ -165,14 +176,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/face2"
         app:civ_border_color="@color/colorGrey"
         app:civ_border_width="0.5dp"
         app:civ_shadow="false"
         app:civ_shadow_color="#3f51b5"
         app:civ_shadow_radius="10"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_event_going_face1"
-        app:layout_constraintTop_toBottomOf="@+id/btn_event_interested" />
+        app:layout_constraintTop_toBottomOf="@+id/img_event_image" />
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/img_event_going_face3"
@@ -181,14 +194,16 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@drawable/face3"
         app:civ_border_color="@color/colorGrey"
         app:civ_border_width="0.5dp"
         app:civ_shadow="false"
         app:civ_shadow_color="#3f51b5"
         app:civ_shadow_radius="10"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_event_going_face2"
-        app:layout_constraintTop_toBottomOf="@+id/btn_event_interested" />
+        app:layout_constraintTop_toBottomOf="@+id/img_event_image" />
 
     <TextView
         android:id="@+id/tv_event_going_more"
@@ -196,18 +211,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
         android:ellipsize="end"
         android:marqueeRepeatLimit="marquee_forever"
         android:text="+200K more are going"
         android:textColor="@color/colorSkyBlue"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img_event_more"
         app:layout_constraintStart_toEndOf="@+id/img_event_going_face3"
-        app:layout_constraintTop_toBottomOf="@+id/btn_event_interested" />
+        app:layout_constraintTop_toBottomOf="@+id/img_event_image" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

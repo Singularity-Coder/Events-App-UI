@@ -86,6 +86,17 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_view_event_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_view_event_title" />
 
+            <TextView
+                android:id="@+id/tv_view_event_price"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="$100000"
+                android:textColor="@color/colorDarkGreen"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_view_event_created_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_view_event_created_date" />
+
             <ImageView
                 android:id="@+id/img_view_event_more"
                 android:layout_width="35dp"
@@ -125,7 +136,7 @@
                 app:civ_shadow_radius="10"
                 app:layout_constraintEnd_toStartOf="@+id/img_event_going_face2"
                 app:layout_constraintStart_toStartOf="@+id/tv_view_event_date"
-                app:layout_constraintTop_toBottomOf="@+id/tv_event_placeholder4" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_view_event_price" />
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/img_event_going_face2"
@@ -141,7 +152,7 @@
                 app:civ_shadow_color="#3f51b5"
                 app:civ_shadow_radius="10"
                 app:layout_constraintStart_toEndOf="@+id/img_event_going_face1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_event_placeholder4" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_view_event_price" />
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/img_event_going_face3"
@@ -157,7 +168,7 @@
                 app:civ_shadow_color="#3f51b5"
                 app:civ_shadow_radius="10"
                 app:layout_constraintStart_toEndOf="@+id/img_event_going_face2"
-                app:layout_constraintTop_toBottomOf="@+id/tv_event_placeholder4" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_view_event_price" />
 
             <TextView
                 android:id="@+id/tv_event_going_more"
@@ -173,7 +184,7 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/img_event_going_face3"
-                app:layout_constraintTop_toBottomOf="@+id/tv_event_placeholder4" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_view_event_price" />
 
             <ImageView
                 android:id="@+id/img_event_share"
