@@ -8,6 +8,7 @@ Its a fully featured Events App
 
 # Screenshots
 ![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s1.png)
+
 Events Home Screen
 
 ![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s2.png)
