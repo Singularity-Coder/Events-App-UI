@@ -10,15 +10,17 @@
         app:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/action_events_add"
-        android:icon="@drawable/ic_add_black_24dp"
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_filter_list_black_24dp"
         android:orderInCategory="2"
-        android:title="Add Event"
-        app:showAsAction="ifRoom" />
+        android:title="Filter Events"
+        app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_filter"
+        android:id="@+id/action_events_add"
+        android:icon="@drawable/ic_add_black_24dp"
         android:orderInCategory="3"
-        android:title="Filter Events"
+        android:title="Add Event"
         app:showAsAction="never" />
+
 </menu>
