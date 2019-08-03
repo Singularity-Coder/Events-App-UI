@@ -36,6 +36,7 @@ import com.singularitycoder.tablayout.R;
 import com.singularitycoder.tablayout.adapter.EventsGoingRecyclerAdapter;
 import com.singularitycoder.tablayout.adapter.EventsHomeRecyclerAdapter;
 import com.singularitycoder.tablayout.adapter.EventsInterestedRecyclerAdapter;
+import com.singularitycoder.tablayout.adapter.EventsRecentRecyclerAdapter;
 import com.singularitycoder.tablayout.model.EventItemModel;
 
 import java.util.ArrayList;
@@ -49,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
     static EventsHomeRecyclerAdapter homeAdapter;
     static EventsInterestedRecyclerAdapter interestedAdapter;
     static EventsGoingRecyclerAdapter goingAdapter;
+    static EventsRecentRecyclerAdapter recentAdapter;
     static ArrayList<EventItemModel> homeList;
     static ArrayList<EventItemModel> interestedList;
     static ArrayList<EventItemModel> goingList;
+    static ArrayList<EventItemModel> recentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFrag(new EventsHomeFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "ALL");
         adapter.addFrag(new EventsInterestedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "INTERESTED");
         adapter.addFrag(new EventsGoingFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "I'M GOING");
-        adapter.addFrag(new EventsGoingFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "RECENTLY VIEWED");
+        adapter.addFrag(new EventsRecentlyViewedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "RECENTLY VIEWED");
         viewPager.setAdapter(adapter);
     }
 
@@ -388,12 +391,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_event_interested, container, false);
+            View view = inflater.inflate(R.layout.fragment_event_going, container, false);
 
             final FrameLayout frameLayout = view.findViewById(R.id.events_fragment);
             frameLayout.setBackgroundColor(color);
 
-            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_interested);
+            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_going);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
             recyclerView.setLayoutManager(linearLayoutManager);
@@ -431,6 +434,67 @@ public class MainActivity extends AppCompatActivity {
             });
 
             recyclerView.setAdapter(goingAdapter);
+
+            return view;
+        }
+    }
+
+    public static class EventsRecentlyViewedFragment extends Fragment {
+        int color;
+
+        public EventsRecentlyViewedFragment() {
+        }
+
+        @SuppressLint("ValidFragment")
+        public EventsRecentlyViewedFragment(int color) {
+            this.color = color;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_event_recent, container, false);
+
+            final FrameLayout frameLayout = view.findViewById(R.id.events_fragment);
+            frameLayout.setBackgroundColor(color);
+
+            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_recent);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
+            recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+
+            recentList = new ArrayList<>();
+//            for (int i = 0; i < EventItemModel.data.length; i++) {
+//                homeList.add(EventItemModel.data[i]);
+//            }
+
+            recentList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Sri Krishna Janmashtami", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Vijaya Ekadasi", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Nityananda Trayodasi", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Bhismastami", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Mohini Ekadasi", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Pandava Nirjala Ekadasi", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Guru Purnima", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Nandotsava", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header, "SUN, AUG 23 - AUG 25", "Lalita Sasti", "Festival", "ISKCON Temple"));
+            recentList.add(new EventItemModel(R.drawable.header2, "SUN, AUG 23 - AUG 25", "Durga Puja", "Festival", "ISKCON Temple"));
+
+            recentAdapter = new EventsRecentRecyclerAdapter(recentList, getContext());
+            recentAdapter.setHasStableIds(true);
+            recentAdapter.setOnItemClickListener(new EventsRecentRecyclerAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Toast.makeText(getContext(), position + " got clicked", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), EventFullViewActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            recyclerView.setAdapter(recentAdapter);
 
             return view;
         }
