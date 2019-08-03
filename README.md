@@ -42,5 +42,10 @@ Its a fully featured Events App for participating and/or hosting an event!
 👆Event Creation
 
 
+![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s8.png)
+
+👆Event Categories
+
+
 
 

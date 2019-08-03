@@ -11,21 +11,30 @@
     android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent">
 
-    <ImageView
-        android:id="@+id/img_event_image"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_event_image"
         android:layout_width="140dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@color/colorBlack"
-        android:elevation="7dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/header"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/img_event_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBlack"
+            android:scaleType="centerCrop"
+            android:src="@drawable/header" />
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/tv_event_date"
@@ -39,7 +48,7 @@
         android:text="SUN, AUG 23 - AUG 25"
         android:textColor="@color/colorMonth"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/img_event_image"
+        app:layout_constraintEnd_toStartOf="@+id/card_event_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +68,7 @@
         android:textColor="@color/colorBlack"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/img_event_image"
+        app:layout_constraintEnd_toStartOf="@+id/card_event_image"
         app:layout_constraintStart_toStartOf="@+id/tv_event_date"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_date" />
 
@@ -96,7 +105,7 @@
         android:maxLines="1"
         android:text="ISKCON Temple"
         android:textColor="@color/colorSubtitle"
-        app:layout_constraintEnd_toStartOf="@+id/img_event_image"
+        app:layout_constraintEnd_toStartOf="@+id/card_event_image"
         app:layout_constraintStart_toEndOf="@+id/tv_event_placeholder1"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_title" />
 
@@ -128,7 +137,7 @@
         android:text="23424304 are going"
         android:textColor="@color/colorSubtitle"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/img_event_image"
+        app:layout_constraintEnd_toStartOf="@+id/card_event_image"
         app:layout_constraintStart_toStartOf="@+id/tv_event_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_event_price" />
 
