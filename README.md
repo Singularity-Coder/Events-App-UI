@@ -24,17 +24,22 @@ Its a fully featured Events App for participating and/or hosting an event!
 
 ![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s4.png)
 
-👆Event details
+👆Event recently viewed
 
 
 ![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s5.png)
 
-👆Filtering events
+👆Events details
 
 
 ![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s6.png)
 
-👆Event Creation screen
+👆Filtering Events
+
+
+![alt text](https://github.com/Singularity-Coder/The-Events-App/blob/master/s7.png)
+
+👆Event Creation
 
 
 
