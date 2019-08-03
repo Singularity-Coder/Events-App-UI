@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.singularitycoder.tablayout.R;
+import com.singularitycoder.tablayout.Helpers;
 import com.singularitycoder.tablayout.model.EventItemModel;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class EventsGoingRecyclerAdapter extends RecyclerView.Adapter<EventsGoing
 //                showMoreEventOptions();
 //            }
 //        });
+        Helpers.setFadeAnimation(eventViewHolder.itemView);
     }
 
     @Override

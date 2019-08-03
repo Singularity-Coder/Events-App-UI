@@ -16,14 +16,14 @@ import com.singularitycoder.tablayout.model.EventItemModel;
 
 import java.util.ArrayList;
 
-public class EventsRecentRecyclerAdapter extends RecyclerView.Adapter<EventsRecentRecyclerAdapter.EventViewHolder> implements Filterable {
+public class EventsCategoriesRecyclerAdapter extends RecyclerView.Adapter<EventsCategoriesRecyclerAdapter.EventViewHolder> implements Filterable {
 
     ArrayList<EventItemModel> eventsList;
     ArrayList<EventItemModel> eventsSearchList;
     Context context;
     OnItemClickListener clickListener;
 
-    public EventsRecentRecyclerAdapter(ArrayList<EventItemModel> eventsList, Context context) {
+    public EventsCategoriesRecyclerAdapter(ArrayList<EventItemModel> eventsList, Context context) {
         this.eventsList = eventsList;
         eventsSearchList = new ArrayList<>(eventsList);
         this.context = context;
@@ -31,19 +31,15 @@ public class EventsRecentRecyclerAdapter extends RecyclerView.Adapter<EventsRece
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_recent_events, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycler_categories_events, viewGroup, false);
         return new EventViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, int i) {
         EventItemModel eventModel = eventsList.get(i);
-
-        eventViewHolder.imgEventImage.setImageResource(eventModel.getIntEventImage());
-        eventViewHolder.tvEventDate.setText(eventModel.getStrEventDate());
-        eventViewHolder.tvEventTitle.setText(eventModel.getStrEventTitle());
-        eventViewHolder.tvEventCategory.setText(eventModel.getStrEventCategory());
-        eventViewHolder.tvEventVenue.setText(eventModel.getStrEventVenue());
+        eventViewHolder.imgEventCategory.setImageResource(eventModel.getImgCategoryIcon());
+        eventViewHolder.tvEventCategoryTitle.setText(eventModel.getStrCategoryTitle());
     }
 
     @Override
@@ -90,24 +86,17 @@ public class EventsRecentRecyclerAdapter extends RecyclerView.Adapter<EventsRece
 
 
     class EventViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView imgEventImage;
-        TextView tvEventDate;
-        TextView tvEventTitle;
-        TextView tvEventCategory;
-        TextView tvEventVenue;
-        TextView tvEventPrice;
-//        ImageView imgMoreEventOptions;
+        ImageView imgEventCategory;
+        TextView tvEventCategoryTitle;
+//        ConstraintLayout conLayCategories;
 
 
         public EventViewHolder(View itemView) {
             super(itemView);
 
-            imgEventImage = itemView.findViewById(R.id.img_event_image);
-            tvEventDate = itemView.findViewById(R.id.tv_event_date);
-            tvEventTitle = itemView.findViewById(R.id.tv_event_title);
-            tvEventCategory = itemView.findViewById(R.id.tv_event_category);
-            tvEventVenue = itemView.findViewById(R.id.tv_event_venue);
-//            imgMoreEventOptions = itemView.findViewById(R.id.img_event_more);
+            imgEventCategory = itemView.findViewById(R.id.img_categories_icon);
+            tvEventCategoryTitle = itemView.findViewById(R.id.tv_categories_title);
+//            conLayCategories = itemView.findViewById(R.id.con_lay_categories);
 
             itemView.setOnClickListener(this);
 

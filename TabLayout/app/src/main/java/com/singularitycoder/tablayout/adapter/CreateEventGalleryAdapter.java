@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.singularitycoder.tablayout.R;
+import com.singularitycoder.tablayout.Helpers;
 import com.singularitycoder.tablayout.model.CreateEventGalleryModel;
 
 import java.io.IOException;
@@ -60,6 +61,7 @@ public class CreateEventGalleryAdapter extends RecyclerView.Adapter<CreateEventG
                 return false;
             }
         });
+        Helpers.setFadeAnimation(holder.itemView);
     }
 
     private void showDeleteDialog(final int position) {

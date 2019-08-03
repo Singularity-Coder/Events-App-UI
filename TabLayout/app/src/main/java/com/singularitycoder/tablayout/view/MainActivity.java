@@ -27,12 +27,15 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.singularitycoder.tablayout.R;
+import com.singularitycoder.tablayout.adapter.EventsCategoriesRecyclerAdapter;
 import com.singularitycoder.tablayout.adapter.EventsGoingRecyclerAdapter;
 import com.singularitycoder.tablayout.adapter.EventsHomeRecyclerAdapter;
 import com.singularitycoder.tablayout.adapter.EventsInterestedRecyclerAdapter;
@@ -51,10 +54,12 @@ public class MainActivity extends AppCompatActivity {
     static EventsInterestedRecyclerAdapter interestedAdapter;
     static EventsGoingRecyclerAdapter goingAdapter;
     static EventsRecentRecyclerAdapter recentAdapter;
+    static EventsCategoriesRecyclerAdapter categoriesAdapter;
     static ArrayList<EventItemModel> homeList;
     static ArrayList<EventItemModel> interestedList;
     static ArrayList<EventItemModel> goingList;
     static ArrayList<EventItemModel> recentList;
+    static ArrayList<EventItemModel> categoriesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new EventsHomeFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "ALL");
+        adapter.addFrag(new EventsCategoriesViewedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "CATEGORIES");
         adapter.addFrag(new EventsInterestedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "INTERESTED");
         adapter.addFrag(new EventsGoingFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "I'M GOING");
         adapter.addFrag(new EventsRecentlyViewedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "RECENTLY VIEWED");
@@ -495,6 +501,67 @@ public class MainActivity extends AppCompatActivity {
             });
 
             recyclerView.setAdapter(recentAdapter);
+
+            return view;
+        }
+    }
+
+    public static class EventsCategoriesViewedFragment extends Fragment {
+        int color;
+
+        public EventsCategoriesViewedFragment() {
+        }
+
+        @SuppressLint("ValidFragment")
+        public EventsCategoriesViewedFragment(int color) {
+            this.color = color;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.fragment_event_categories, container, false);
+
+            final FrameLayout frameLayout = view.findViewById(R.id.events_fragment);
+            frameLayout.setBackgroundColor(color);
+
+            RecyclerView recyclerView = view.findViewById(R.id.recycler_view_events_categories);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setItemViewCacheSize(20);
+            recyclerView.setDrawingCacheEnabled(true);
+            recyclerView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+//            recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.HORIZONTAL));
+
+            categoriesList = new ArrayList<>();
+            categoriesList.add(new EventItemModel("Art", R.drawable.header));
+            categoriesList.add(new EventItemModel("Causes", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Comedy", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Crafts", R.drawable.header));
+            categoriesList.add(new EventItemModel("Dance", R.drawable.header));
+            categoriesList.add(new EventItemModel("Drinks", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Film", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Fitness", R.drawable.header));
+            categoriesList.add(new EventItemModel("Food", R.drawable.header));
+            categoriesList.add(new EventItemModel("Games", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Gardening", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Health", R.drawable.header));
+            categoriesList.add(new EventItemModel("Home", R.drawable.header));
+            categoriesList.add(new EventItemModel("Literature", R.drawable.header2));
+            categoriesList.add(new EventItemModel("Music", R.drawable.header2));
+
+            categoriesAdapter = new EventsCategoriesRecyclerAdapter(categoriesList, getContext());
+            categoriesAdapter.setHasStableIds(true);
+            categoriesAdapter.setOnItemClickListener(new EventsCategoriesRecyclerAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    Toast.makeText(getContext(), position + " got clicked", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), EventFullViewActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            recyclerView.setAdapter(categoriesAdapter);
 
             return view;
         }

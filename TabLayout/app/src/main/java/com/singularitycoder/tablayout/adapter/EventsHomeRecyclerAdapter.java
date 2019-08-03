@@ -20,6 +20,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.singularitycoder.tablayout.R;
+import com.singularitycoder.tablayout.Helpers;
 import com.singularitycoder.tablayout.model.EventItemModel;
 
 import java.util.ArrayList;
@@ -119,6 +120,7 @@ public class EventsHomeRecyclerAdapter extends RecyclerView.Adapter<EventsHomeRe
                 showMoreEventOptions();
             }
         });
+        Helpers.setFadeAnimation(eventViewHolder.itemView);
     }
 
     @Override

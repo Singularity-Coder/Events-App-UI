@@ -8,6 +8,9 @@ public class EventItemModel {
     private String strEventVenue;
     private String strEventPrice;
 
+    private String strCategoryTitle;
+    private int imgCategoryIcon;
+
     public EventItemModel(int intEventImage, String strEventDate, String strEventTitle, String strEventCategory, String strEventVenue, String strEventPrice) {
         this.intEventImage = intEventImage;
         this.strEventDate = strEventDate;
@@ -23,6 +26,27 @@ public class EventItemModel {
         this.strEventTitle = strEventTitle;
         this.strEventCategory = strEventCategory;
         this.strEventVenue = strEventVenue;
+    }
+
+    public EventItemModel(String strCategoryTitle, int imgCategoryIcon) {
+        this.strCategoryTitle = strCategoryTitle;
+        this.imgCategoryIcon = imgCategoryIcon;
+    }
+
+    public int getImgCategoryIcon() {
+        return imgCategoryIcon;
+    }
+
+    public void setImgCategoryIcon(int imgCategoryIcon) {
+        this.imgCategoryIcon = imgCategoryIcon;
+    }
+
+    public String getStrCategoryTitle() {
+        return strCategoryTitle;
+    }
+
+    public void setStrCategoryTitle(String strCategoryTitle) {
+        this.strCategoryTitle = strCategoryTitle;
     }
 
     public int getIntEventImage() {

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.himangi.imagepreview.ImagePreviewActivity;
 import com.himangi.imagepreview.PreviewFile;
+import com.singularitycoder.tablayout.Helpers;
 import com.singularitycoder.tablayout.model.EventFullViewModel;
 import com.singularitycoder.tablayout.R;
 
@@ -44,6 +45,7 @@ public class EventFullViewGalleryAdapter extends RecyclerView.Adapter<EventFullV
                 showGalleryImagePreview(i);
             }
         });
+        Helpers.setFadeAnimation(eventFullViewGalleryViewHolder.itemView);
     }
 
     private void showGalleryImagePreview(int i) {
