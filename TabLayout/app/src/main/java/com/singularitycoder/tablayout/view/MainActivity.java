@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFrag(new EventsHomeFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "ALL");
         adapter.addFrag(new EventsInterestedFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "INTERESTED");
         adapter.addFrag(new EventsGoingFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "I'M GOING");
+        adapter.addFrag(new EventsGoingFragment(ContextCompat.getColor(this, R.color.bg_light_grey)), "RECENTLY VIEWED");
         viewPager.setAdapter(adapter);
     }
 

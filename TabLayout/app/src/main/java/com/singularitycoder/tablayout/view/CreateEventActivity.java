@@ -33,6 +33,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -65,6 +66,8 @@ public class CreateEventActivity extends AppCompatActivity {
     TextView eventTypeDialog, eventCategoryDialog, eventFrequencyDialog, eventStartDateDialog, eventEndDateDialog, eventStartTimeDialog, eventEndTimeDialog;
     ImageView imgSetEventHeaderPic, imgSetEventPicIndicator;
     TextView tvSetEventPicIndicatorText;
+    TextView tvEventPrice;
+    EditText etEventPrice;
     ConstraintLayout conLayHeaderImage;
 
     RecyclerView galleryRecyclerView;
@@ -127,6 +130,9 @@ public class CreateEventActivity extends AppCompatActivity {
 
         imgSetEventPicIndicator = findViewById(R.id.imgbtn_create_event_upload_pic);
         tvSetEventPicIndicatorText = findViewById(R.id.tv_create_event_upload_pic);
+
+        tvEventPrice = findViewById(R.id.tv_create_event_price);
+        etEventPrice = findViewById(R.id.et_create_event_price);
 
         initToolBar();
         listeners();
@@ -621,9 +627,13 @@ public class CreateEventActivity extends AppCompatActivity {
                 switch (which) {
                     case 0:
                         eventTypeDialog.setText(selectArray[0]);
+                        tvEventPrice.setVisibility(View.GONE);
+                        etEventPrice.setVisibility(View.GONE);
                         break;
                     case 1:
                         eventTypeDialog.setText(selectArray[1]);
+                        tvEventPrice.setVisibility(View.VISIBLE);
+                        etEventPrice.setVisibility(View.VISIBLE);
                         break;
                 }
             }
