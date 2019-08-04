@@ -434,8 +434,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(View view, int position) {
                     Toast.makeText(getContext(), position + " got clicked", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getContext(), EventFullViewActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getContext(), EventFullViewActivity.class);
+//                    startActivity(intent);
                 }
             });
 
