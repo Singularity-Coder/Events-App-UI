@@ -18,14 +18,14 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:parentActivityName=".view.MainActivity"
-            android:name=".view.EventFullViewActivity" />
+            android:parentActivityName=".EventsHome.MainActivity"
+            android:name=".EventsHome.EventFullViewActivity" />
 
         <activity
-            android:parentActivityName=".view.MainActivity"
-            android:name=".view.CreateEventActivity" />
+            android:parentActivityName=".EventsHome.MainActivity"
+            android:name=".CreateEvent.CreateEventActivity" />
 
-        <activity android:name=".view.MainActivity">
+        <activity android:name=".EventsHome.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
