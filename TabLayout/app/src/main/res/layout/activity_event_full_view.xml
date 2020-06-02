@@ -338,7 +338,7 @@
                 android:ellipsize="end"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:maxLines="1"
-                android:text="ISKCON Temple"
+                android:text="Trinity Hotel"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp"
                 android:textStyle="bold"
